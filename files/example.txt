@@ -1,0 +1,3 @@
+This is an example file for testing the download endpoint.
+You can download this file using the GET /download/example.txt endpoint.
+This file can be used for load testing with Locust.

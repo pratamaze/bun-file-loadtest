@@ -1,0 +1,6 @@
+[runtime]
+module = "typescript"
+watch = true
+
+[build]
+entry = "./src/app.ts"
