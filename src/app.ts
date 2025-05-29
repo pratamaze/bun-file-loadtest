@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import { config } from './config';
 import uploadRoutes from './routes/uploadRoutes';
-import downloadRoutes from './routes/downloadRoutes';
+// import downloadRoutes from './routes/downloadRoutes';
 
 // Create Express app
 const app = express();
@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use(uploadRoutes);
-app.use(downloadRoutes);
+// app.use(downloadRoutes);
 
 // Health check endpoint - useful for load testing
 app.get('/health', (req, res) => {
@@ -39,8 +39,13 @@ app.listen(config.port, () => {
   console.log(`- Health check:     GET    http://localhost:${config.port}/health`);
   console.log(`- List files:       GET    http://localhost:${config.port}/files`);
   console.log(`- Download file:    GET    http://localhost:${config.port}/download/:filename`);
-  console.log(`- Upload single:    POST   http://localhost:${config.port}/upload`);
-  console.log(`- Upload multiple:  POST   http://localhost:${config.port}/upload/multiple`);
+  
+  console.log(`- Upload single:        POST   http://localhost:${config.port}/upload`);
+  console.log(`- Upload 10KB max:      POST   http://localhost:${config.port}/upload/10kb`);
+  console.log(`- Upload 100KB max:     POST   http://localhost:${config.port}/upload/100kb`);
+  console.log(`- Upload 1000KB max:    POST   http://localhost:${config.port}/upload/1000kb`);
+  console.log(`- Upload multiple:      POST   http://localhost:${config.port}/upload/multiple`);
+
 });
 
 export default app;
