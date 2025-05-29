@@ -37,8 +37,6 @@ app.listen(config.port, () => {
   console.log(`Server running on http://localhost:${config.port}`);
   console.log('\nAvailable endpoints:');
   console.log(`- Health check:     GET    http://localhost:${config.port}/health`);
-  console.log(`- List files:       GET    http://localhost:${config.port}/files`);
-  console.log(`- Download file:    GET    http://localhost:${config.port}/download/:filename`);
   
   console.log(`- Upload single:        POST   http://localhost:${config.port}/upload`);
   console.log(`- Upload 10KB max:      POST   http://localhost:${config.port}/upload/10kb`);

@@ -7,17 +7,17 @@ class APILoadTest(HttpUser):
     def on_start(self):
         """Setup test files for upload"""
         # Create small file (10KB)
-        self.small_file_path = "files/test_small.txt"
+        self.small_file_path = "files/small.txt"
         with open(self.small_file_path, "w") as f:
             f.write("A" * (10 * 1024))  # 10KB of data
             
         # Create medium file (100KB)
-        self.medium_file_path = "files/test_medium.txt"
+        self.medium_file_path = "files/medium.txt"
         with open(self.medium_file_path, "w") as f:
             f.write("B" * (100 * 1024))  # 100KB of data
             
         # Create large file (1000KB)
-        self.large_file_path = "files/test_large.txt"
+        self.large_file_path = "files/large.txt"
         with open(self.large_file_path, "w") as f:
             f.write("C" * (1000 * 1024))  # 1000KB of data
     
@@ -26,10 +26,6 @@ class APILoadTest(HttpUser):
         """Test health check endpoint"""
         self.client.get("/health")
     
-    @task(1)
-    def list_files(self):
-        """Test listing files endpoint"""
-        self.client.get("/files")
     
     @task(3)
     def upload_small_file(self):
@@ -49,10 +45,6 @@ class APILoadTest(HttpUser):
         files = {'file': open(self.large_file_path, 'rb')}
         self.client.post("/upload/large", files=files)
     
-    @task(1)
-    def download_file(self):
-        """Test file download"""
-        self.client.get("/download/example.txt")
     
     def on_stop(self):
         """Cleanup test files"""
